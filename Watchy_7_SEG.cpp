@@ -8,7 +8,7 @@
 
 // change it to your location 
 //          latitude, longitude, timezone
-#define LOC 31.00, 121.00, 8
+#define LOC 52.26, 7.79, 1
 
 RTC_DATA_ATTR bool DARKMODE = false;
 // RTC_DATA_ATTR int showState = 0;
@@ -60,7 +60,7 @@ void Watchy7SEG::drawWatchFace()
 {
     display.fillScreen(DARKMODE ? GxEPD_BLACK : GxEPD_WHITE);
     display.setTextColor(DARKMODE ? GxEPD_WHITE : GxEPD_BLACK);
-    drawFiel ();
+    drawFiel();
     drawTime();
     drawDate();
     drawSteps();
@@ -76,6 +76,7 @@ void Watchy7SEG::drawWatchFace()
     // }
     drawMoon();
     drawSun();
+    drawPrecip();
 }
 
 void Watchy7SEG::drawTime()
@@ -653,7 +654,7 @@ void Watchy7SEG::drawMoon() {
         else if (lt < 0.6)
             display.drawBitmap(131, 74, luna4, 61, 61, DARKMODE ? GxEPD_WHITE : GxEPD_BLACK);
         else if (lt < 0.75)
-            display.drawBitmap(131, 74, luna5, 61, 61, DARKMODE ? GxEPD_WHITE : GxEPD_BLACK);
+            disp lay.drawBitmap(131, 74, luna5, 61, 61, DARKMODE ? GxEPD_WHITE : GxEPD_BLACK);
         else if (lt < 0.9)
             display.drawBitmap(131, 74, luna6, 61, 61, DARKMODE ? GxEPD_WHITE : GxEPD_BLACK);
         else 
@@ -883,6 +884,11 @@ void Watchy7SEG::drawSun() {
     else if (h == 9)
         display.drawBitmap(132, 137, num_9, 3, 5, DARKMODE ? GxEPD_WHITE : GxEPD_BLACK);
 }
+
+void Watchy7SEG::drawPrecip()
+{
+    dailyWeather currentPrecip = getPrecipitation();
+
 
 //void Watchy7SEG::drawWeather()
 //{
